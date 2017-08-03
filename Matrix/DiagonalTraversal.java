@@ -17,9 +17,9 @@ public class DiagonalTraversal {
     public static void main(String[] args) {
        Scanner sc= new Scanner(System.in);
         int m,n,start_col,count,j,i,line;
-        m=sc.nextInt();
         n=sc.nextInt();
-        int arr[][]= new int[m][n];
+        m=sc.nextInt();
+        int arr[][]= new int[n][m];
         for(i=0;i<n;i++)
             for(j=0;j<m;j++)
                 arr[i][j]=sc.nextInt();
