@@ -5,7 +5,7 @@ package javaapplication2;
 import java.io.*;
 import java.util.*;
 
-public class Solution {
+public class DiagonalTraversal {
     static int min(int a,int b)
     {
         return a>b?b:a;
