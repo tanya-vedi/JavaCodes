@@ -2,6 +2,28 @@
 
 class Solution {
     
+    /* Alternatively: https://leetcode.com/problems/search-in-rotated-sorted-array/submissions/
+        int search(int[] nums, int l, int r, int target) {
+        if(l<=r) {
+            int mid = (l+r)/2;
+            if(nums[mid]==target) return mid;
+            // l-> mid-1 is sorted 
+            if(nums[l]<=nums[mid]) {
+                if(nums[l]<=target && nums[mid]>=target)
+                    return search(nums, l, mid-1, target); 
+                else
+                    return search(nums, mid+1, r, target);
+            }
+            if(nums[r]>=nums[mid]){
+                if(nums[r]>=target && nums[mid]<=target)
+                    return search(nums, mid+1, r, target);
+            }
+            return search(nums, l, mid-1, target); 
+        }
+        return -1;
+    }
+    */
+    
     int findPivot(int[] nums, int l, int r) {
         if(l>r) return -1;
         if(l==r) return l;
