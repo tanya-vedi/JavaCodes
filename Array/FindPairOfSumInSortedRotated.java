@@ -1,41 +1,35 @@
 //Link: https://www.codingninjas.com/codestudio/problems/find-pair-sum-in-rotated-and-sorted-array_985350 and https://www.geeksforgeeks.org/given-a-sorted-and-rotated-array-find-if-there-is-a-pair-with-a-given-sum/
 
 public class Solution {
-    public static int findPivot(int[] arr, int l, int h){
-      if(l>h)
-          return -1;
-      if(l==h)
-          return l;
-      int mid=(l+h)/2;
-      if(mid<h && arr[mid+1]<arr[mid] )
-          return mid+1;
-      if(l<mid && arr[mid]<arr[mid-1])
-          return mid;
-      if(arr[l]<arr[mid])
-          return findPivot(arr,mid+1,h);
-      return findPivot(arr,l, mid-1);
-  }
-    public static boolean findPairSum(int[] arr, int target) {
-      int n=arr.length;
-      int pivot=findPivot(arr,0,n-1);
-      int l,h;
-      if(pivot==-1)
-      {
-          l=0;
-          h=n-1;
-      }
-      else{
-          l=pivot;
-          h=(pivot-1+n)%n;
-      }
-      while(l!=h){
-          if(arr[l]+arr[h]==target)
-              return true;
-          if(arr[l]+arr[h]<=target)
-              l=(l+1)%n;
-          else
-              h=(h-1+n)%n;
-      }
-      return false;
+    // find the smallest one 
+    static int findPivot(int nums[], int l, int r) {
+        if(l>=r) return -1;
+        int mid = (l+r)/2;
+        if(mid<r && nums[mid]>nums[mid+1]) return mid+1;
+        if(mid>l && nums[mid]<nums[mid-1]) return mid;
+        if(nums[l]>=nums[mid]) return findPivot(nums, l, mid-1);
+        return findPivot(nums, mid+1, r);
     }
+    
+	public static boolean findPairSum(int[] arr, int target) {
+        int n = arr.length;
+		int pivot = findPivot(arr, 0, n-1);
+        int l, r; 
+        if(pivot == -1){
+            l = 0; r = n-1; 
+        } //pivot is smallest 
+        else {
+            l = pivot;
+            r = (n+pivot-1)%n;
+        }
+        while(l!=r) {
+            if((arr[l]+arr[r])==target) return true;
+            if(arr[l]+arr[r]<target) 
+                l = (l+1)%n;
+            else
+                r = (r+n-1)%n;
+        }
+        return false; 
+	}
 }
+
